@@ -23,11 +23,18 @@ namespace HotelApplication
         public MainWindow()
         {
             InitializeComponent();
+            //using (hotelDBEntities context = new hotelDBEntities())
+            //{
+            //    context.Storages.Add(new Storage {});
+            //    context.SaveChanges();
+            //}
+
         }
 
         private void ButtonPopUpAdmin_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.MainLeftListBox.UnselectAll();
+            this.mainContentControl.Content = new AdminControlWindow();
         }
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
@@ -45,6 +52,31 @@ namespace HotelApplication
         {
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
             ButtonCloseMenu.Visibility = Visibility.Visible;
+        }
+
+        private void Listview_home_Selected(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Listview_reservation_Selected(object sender, RoutedEventArgs e)
+        {
+            this.mainContentControl.Content = new ReservationControlWindow();
+        }
+
+        private void Listview_pay_Selected(object sender, RoutedEventArgs e)
+        {
+            this.mainContentControl.Content = new PayControlWindow();
+        }
+
+        private void Listview_storage_Selected(object sender, RoutedEventArgs e)
+        {
+            this.mainContentControl.Content = new StorageControlWindow();
+        }
+
+        private void ButtonHelp_Click(object sender, RoutedEventArgs e)
+        {
+            this.mainContentControl.Content = new HelpControlWindow();
         }
     }
 }

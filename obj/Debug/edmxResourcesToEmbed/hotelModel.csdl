@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hotelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Attribute">
+    <Key>
+      <PropertyRef Name="id_at" />
+    </Key>
+    <Property Name="id_at" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Rooms" Relationship="Self.Room_Attribute" FromRole="Attribute" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Fridge">
+    <Key>
+      <PropertyRef Name="id_fr" />
+    </Key>
+    <Property Name="id_fr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Product_Fridge" Relationship="Self.FK_Product_Fridge_Fridge" FromRole="Fridge" ToRole="Product_Fridge" />
+    <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_Fridge" FromRole="Fridge" ToRole="Room" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id_pr" />
+    </Key>
+    <Property Name="id_pr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Product_Fridge" Relationship="Self.FK_Product_Fridge_Product" FromRole="Product" ToRole="Product_Fridge" />
+    <NavigationProperty Name="Storage_Product" Relationship="Self.FK_Storage_Product_Product" FromRole="Product" ToRole="Storage_Product" />
+  </EntityType>
+  <EntityType Name="Product_Fridge">
+    <Key>
+      <PropertyRef Name="id_fr" />
+      <PropertyRef Name="id_pr" />
+    </Key>
+    <Property Name="id_fr" Type="Int32" Nullable="false" />
+    <Property Name="id_pr" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Int32" />
+    <NavigationProperty Name="Fridge" Relationship="Self.FK_Product_Fridge_Fridge" FromRole="Product_Fridge" ToRole="Fridge" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Fridge_Product" FromRole="Product_Fridge" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="id_re" />
+    </Key>
+    <Property Name="id_re" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="price_total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Rooms" Relationship="Self.Reservation_Room" FromRole="Reservation" ToRole="Room" />
+    <Property Name="date_from" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="date_to" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="firstname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="320" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ispayed" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="id_ro" />
+    </Key>
+    <Property Name="id_ro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_fr" Type="Int32" Nullable="false" />
+    <Property Name="beds" Type="Int32" Nullable="false" />
+    <Property Name="price_per_day" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Fridge" Relationship="Self.FK_Room_Fridge" FromRole="Room" ToRole="Fridge" />
+    <NavigationProperty Name="Reservations" Relationship="Self.Reservation_Room" FromRole="Room" ToRole="Reservation" />
+    <NavigationProperty Name="Attributes" Relationship="Self.Room_Attribute" FromRole="Room" ToRole="Attribute" />
+  </EntityType>
+  <EntityType Name="Storage">
+    <Key>
+      <PropertyRef Name="id_st" />
+    </Key>
+    <Property Name="id_st" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Storage_Product" Relationship="Self.FK_Storage_Product_Storage" FromRole="Storage" ToRole="Storage_Product" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Storage_Product">
+    <Key>
+      <PropertyRef Name="id_st" />
+      <PropertyRef Name="id_pr" />
+    </Key>
+    <Property Name="id_st" Type="Int32" Nullable="false" />
+    <Property Name="id_pr" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Storage_Product_Product" FromRole="Storage_Product" ToRole="Product" />
+    <NavigationProperty Name="Storage" Relationship="Self.FK_Storage_Product_Storage" FromRole="Storage_Product" ToRole="Storage" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Product_Fridge_Fridge">
+    <End Role="Fridge" Type="Self.Fridge" Multiplicity="1" />
+    <End Role="Product_Fridge" Type="Self.Product_Fridge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fridge">
+        <PropertyRef Name="id_fr" />
+      </Principal>
+      <Dependent Role="Product_Fridge">
+        <PropertyRef Name="id_fr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Fridge">
+    <End Role="Fridge" Type="Self.Fridge" Multiplicity="1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fridge">
+        <PropertyRef Name="id_fr" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="id_fr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Fridge_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Product_Fridge" Type="Self.Product_Fridge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id_pr" />
+      </Principal>
+      <Dependent Role="Product_Fridge">
+        <PropertyRef Name="id_pr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Storage_Product_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Storage_Product" Type="Self.Storage_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id_pr" />
+      </Principal>
+      <Dependent Role="Storage_Product">
+        <PropertyRef Name="id_pr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Storage_Product_Storage">
+    <End Role="Storage" Type="Self.Storage" Multiplicity="1" />
+    <End Role="Storage_Product" Type="Self.Storage_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Storage">
+        <PropertyRef Name="id_st" />
+      </Principal>
+      <Dependent Role="Storage_Product">
+        <PropertyRef Name="id_st" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Reservation_Room">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+  </Association>
+  <Association Name="Room_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="*" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="hotelDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Attributes" EntityType="Self.Attribute" />
+    <EntitySet Name="Fridges" EntityType="Self.Fridge" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Product_Fridge" EntityType="Self.Product_Fridge" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <EntitySet Name="Storages" EntityType="Self.Storage" />
+    <EntitySet Name="Storage_Product" EntityType="Self.Storage_Product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Product_Fridge_Fridge" Association="Self.FK_Product_Fridge_Fridge">
+      <End Role="Fridge" EntitySet="Fridges" />
+      <End Role="Product_Fridge" EntitySet="Product_Fridge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Fridge" Association="Self.FK_Room_Fridge">
+      <End Role="Fridge" EntitySet="Fridges" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Fridge_Product" Association="Self.FK_Product_Fridge_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Product_Fridge" EntitySet="Product_Fridge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Storage_Product_Product" Association="Self.FK_Storage_Product_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Storage_Product" EntitySet="Storage_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Storage_Product_Storage" Association="Self.FK_Storage_Product_Storage">
+      <End Role="Storage" EntitySet="Storages" />
+      <End Role="Storage_Product" EntitySet="Storage_Product" />
+    </AssociationSet>
+    <AssociationSet Name="Reservation_Room" Association="Self.Reservation_Room">
+      <End Role="Reservation" EntitySet="Reservations" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="Room_Attribute" Association="Self.Room_Attribute">
+      <End Role="Attribute" EntitySet="Attributes" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <EntitySet Name="view_StorageProductAmount" EntityType="hotelDBModel.view_StorageProductAmount" />
+    <EntitySet Name="view_FridgeProductAmount" EntityType="hotelDBModel.view_FridgeProductAmount" />
+    <EntitySet Name="view_RoomReservations" EntityType="hotelDBModel.view_RoomReservations" />
+    <EntitySet Name="view_AllPayedReservations" EntityType="hotelDBModel.view_AllPayedReservations" />
+  </EntityContainer>
+  <EntityType Name="view_StorageProductAmount">
+    <Key>
+      <PropertyRef Name="id_st" />
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="id_st" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="amount" Type="Int32" />
+  </EntityType>
+  <EntityType Name="view_FridgeProductAmount">
+    <Key>
+      <PropertyRef Name="id_fr" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="price" />
+    </Key>
+    <Property Name="id_fr" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="amount" Type="Int32" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="view_RoomReservations">
+    <Key>
+      <PropertyRef Name="id_re" />
+      <PropertyRef Name="id_ro" />
+    </Key>
+    <Property Name="beds" Type="Int32" />
+    <Property Name="price_per_day" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="date_from" Type="DateTime" Precision="0" />
+    <Property Name="date_to" Type="DateTime" Precision="0" />
+    <Property Name="id_re" Type="Int32" Nullable="false" />
+    <Property Name="id_ro" Type="Int32" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price_total" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="view_AllPayedReservations">
+    <Key>
+      <PropertyRef Name="id_re" />
+      <PropertyRef Name="firstname" />
+      <PropertyRef Name="lastname" />
+      <PropertyRef Name="date_from" />
+      <PropertyRef Name="date_to" />
+      <PropertyRef Name="price_total" />
+      <PropertyRef Name="phone" />
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="id_re" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="date_from" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="date_to" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="price_total" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="320" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

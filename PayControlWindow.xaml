@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="HotelApplication.PayControlWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:HotelApplication"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.FontWeight="Light"
+             TextElement.FontSize="14"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             Height="698" Width="1286">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="stackpanel1">
+                <GroupBox Header="Vyber rezervaci" Margin="10" Height="100" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <ComboBox x:Name="combo_choosereservation" materialDesign:HintAssist.Hint="Rezervace na jméno" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="Combo_choosereservation_SelectionChanged">
+                            <ComboBoxItem IsSelected="True" Content="Jmeno Prijmeni"/>
+                        </ComboBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupbox_room1" Header="Zakoupené produkty" Margin="10,0" Height="210" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1" Visibility="Hidden">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <Label x:Name="label_room1" Content="Pokoj číslo : "/>
+                        <ComboBox x:Name="combo_roomproducts1" materialDesign:HintAssist.Hint="Produkty" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Produkt 1"/>
+                        </ComboBox>
+                        <TextBox x:Name="txt_productamount1" materialDesign:HintAssist.Hint="Počet kusů" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addProduct1" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addProduct1_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupbox_room2" Header="Zakoupené produkty" Margin="10" Height="210" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1" Visibility="Hidden">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <Label x:Name="label_room2" Content="Pokoj číslo : 2"/>
+                        <ComboBox x:Name="combo_roomproducts2" materialDesign:HintAssist.Hint="Produkty" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+
+                        </ComboBox>
+                        <TextBox x:Name="txt_productamount2" materialDesign:HintAssist.Hint="Počet kusů" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addProduct2" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel>
+                <GroupBox x:Name="groupbox_room3" Header="Zakoupené produkty" Margin="10" Height="210" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1" Visibility="Hidden">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <Label x:Name="label_room3" Content="Pokoj číslo : 3"/>
+                        <ComboBox x:Name="combo_roomproducts3" materialDesign:HintAssist.Hint="Produkty" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Produkt 1"/>
+                        </ComboBox>
+                        <TextBox x:Name="txt_productamount3" materialDesign:HintAssist.Hint="Počet kusů" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addProduct3" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupbox_room4" Header="Zakoupené produkty" Margin="10" Height="210" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1" Visibility="Hidden">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <Label x:Name="label_room4" Content="Pokoj číslo : 4"/>
+                        <ComboBox x:Name="combo_roomproducts4" materialDesign:HintAssist.Hint="Produkty" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Produkt 1"/>
+                        </ComboBox>
+                        <TextBox x:Name="txt_productamount4" materialDesign:HintAssist.Hint="Počet kusů" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addProduct4" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupbox_room5" Header="Zakoupené produkty" Margin="10" Height="210" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1" Visibility="Hidden">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <Label x:Name="label_room5" Content="Pokoj číslo : 5"/>
+                        <ComboBox x:Name="combo_roomproducts5" materialDesign:HintAssist.Hint="Produkty" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Produkt 1"/>
+                        </ComboBox>
+                        <TextBox x:Name="txt_productamount5" materialDesign:HintAssist.Hint="Počet kusů" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addProduct5" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel>
+                <GroupBox x:Name="groupbox_room6" Header="Zakoupené produkty" Margin="10" Height="210" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1" Visibility="Hidden">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <Label x:Name="label_room6" Content="Pokoj číslo : 6"/>
+                        <ComboBox x:Name="combo_roomproducts6" materialDesign:HintAssist.Hint="Produkty" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Produkt 1"/>
+                        </ComboBox>
+                        <TextBox x:Name="txt_productamount6" materialDesign:HintAssist.Hint="Počet kusů" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addProduct6" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupbox_room7" Header="Zakoupené produkty" Margin="10" Height="210" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1" Visibility="Hidden">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <Label x:Name="label_room7" Content="Pokoj číslo : 7"/>
+                        <ComboBox x:Name="combo_roomproducts7" materialDesign:HintAssist.Hint="Produkty" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Produkt 1"/>
+                        </ComboBox>
+                        <TextBox x:Name="txt_productamount7" materialDesign:HintAssist.Hint="Počet kusů" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addProduct7" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupbox_room8" Header="Zakoupené produkty" Margin="10" Height="210" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1" Visibility="Hidden">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <Label x:Name="label_room8" Content="Pokoj číslo : 8"/>
+                        <ComboBox x:Name="combo_roomproducts8" materialDesign:HintAssist.Hint="Produkty" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Produkt 1"/>
+                        </ComboBox>
+                        <TextBox x:Name="txt_productamount8" materialDesign:HintAssist.Hint="Počet kusů" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addProduct8" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel Width="180"></StackPanel>
+            <StackPanel>
+                <GroupBox x:Name="groupbox_pay" Header="Zaplatit" Margin="10" Height="680" Width="545" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="530" HorizontalAlignment="Left">
+                        <Label Content="Souhrn -"/>
+                        <Label Content="POKOJ1"/>
+                        <Label Content="POKOJ2" Visibility="Hidden"/>
+                        <Label Content="PRODUKTY" Visibility="Visible"/>
+                        <Button x:Name="btn_pay" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="ZAPLATIT" Margin="0,15" Click="Btn_pay_Click"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

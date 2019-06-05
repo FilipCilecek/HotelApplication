@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="HotelApplication.StorageControlWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HotelApplication"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.FontWeight="Light"
+             TextElement.FontSize="14"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             Height="698" Width="1286">
+    <Grid>
+        <StackPanel>
+            <GroupBox Header="Vytvořit produkt" Margin="10,10,0,10" Height="180" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                <StackPanel Width="140" HorizontalAlignment="Left">
+                    <TextBox x:Name="txt_productname" materialDesign:HintAssist.Hint="Název produktu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox x:Name="txt_productprice" materialDesign:HintAssist.Hint="Cena produktu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <Button x:Name="btn_addProduct" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addProduct_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Přidat produkty - sklad" Margin="10,0,0,10" Height="220" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                <StackPanel Width="140" HorizontalAlignment="Left">
+                    <ComboBox x:Name="combo_productnames_tostorage" materialDesign:HintAssist.Hint="Název produktu" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem IsSelected="True">PRODUKTY</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox x:Name="combo_storagenames_tostorage" materialDesign:HintAssist.Hint="Název skladu" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem IsSelected="True">SKLADY</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox x:Name="txt_howmuchproducts_tostorage" materialDesign:HintAssist.Hint="Kolik kusů" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <Button x:Name="btn_addProductsToStorage" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addProductsToStorage_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Sklad do lednice" Margin="10,0,0,10" Height="260" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                <StackPanel Width="140" HorizontalAlignment="Left">
+                    <ComboBox x:Name="combo_storages" materialDesign:HintAssist.Hint="Název skladu" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem IsSelected="True" Content="SKLAD 1"/>
+                    </ComboBox>
+                    <ComboBox x:Name="combo_fridges" materialDesign:HintAssist.Hint="Název lednice" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem IsSelected="True" Content="LEDNICE 1"/>
+                    </ComboBox>
+                    <ComboBox x:Name="combo_products" materialDesign:HintAssist.Hint="Název produktu" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem IsSelected="True" Content="PRODUKT 1"/>
+                    </ComboBox>
+                    <TextBox x:Name="txt_howmuchproducts_tofridge" materialDesign:HintAssist.Hint="Kolik kusů přesunout" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <Button x:Name="btn_addRoom" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_ProductsStorageToFridge_Click"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            
+            <StackPanel Margin="10">
+                <StackPanel >
+                    <ComboBox x:Name="combo_gridstorages" materialDesign:HintAssist.Hint="Název skladu" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="Combo_gridstorages_SelectionChanged">
+                        <ComboBoxItem IsSelected="True" Content="SKLAD 1"/>
+                    </ComboBox>
+                    <DataGrid x:Name="datagrid_storage" Height="400" Width="300" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Produkt" Binding="{Binding Path=name}" Width="200"/>
+                            <DataGridTextColumn Header="Kusy" Binding="{Binding Path=amount}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </StackPanel>
+            
+            <StackPanel Margin="10">
+            <StackPanel >
+                <ComboBox x:Name="combo_gridfridges" materialDesign:HintAssist.Hint="Název lednice" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="Combo_gridfridges_SelectionChanged">
+                    <ComboBoxItem IsSelected="True" Content="LEDNICE 1"/>
+                </ComboBox>
+                    <DataGrid x:Name="datagrid_fridge" Height="400" Width="300" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Produkt" Binding="{Binding Path=name}" Width="200"/>
+                            <DataGridTextColumn Header="Kusy" Binding="{Binding Path=amount}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+            </StackPanel>
+        </StackPanel>
+        
+        </StackPanel>
+    </Grid>
+</UserControl>

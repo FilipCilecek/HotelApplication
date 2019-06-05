@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hotelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attribute">
+    <Key>
+      <PropertyRef Name="id_at" />
+    </Key>
+    <Property Name="id_at" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fridge">
+    <Key>
+      <PropertyRef Name="id_fr" />
+    </Key>
+    <Property Name="id_fr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id_pr" />
+    </Key>
+    <Property Name="id_pr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="price" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product_Fridge">
+    <Key>
+      <PropertyRef Name="id_fr" />
+      <PropertyRef Name="id_pr" />
+    </Key>
+    <Property Name="id_fr" Type="int" Nullable="false" />
+    <Property Name="id_pr" Type="int" Nullable="false" />
+    <Property Name="amount" Type="int" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="id_re" />
+    </Key>
+    <Property Name="id_re" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="price_total" Type="money" Nullable="false" />
+    <Property Name="date_from" Type="smalldatetime" Nullable="false" />
+    <Property Name="date_to" Type="smalldatetime" Nullable="false" />
+    <Property Name="firstname" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="320" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ispayed" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservation_Room">
+    <Key>
+      <PropertyRef Name="id_re" />
+      <PropertyRef Name="id_ro" />
+    </Key>
+    <Property Name="id_re" Type="int" Nullable="false" />
+    <Property Name="id_ro" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="id_ro" />
+    </Key>
+    <Property Name="id_ro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_fr" Type="int" Nullable="false" />
+    <Property Name="beds" Type="int" Nullable="false" />
+    <Property Name="price_per_day" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Room_Attribute">
+    <Key>
+      <PropertyRef Name="id_ro" />
+      <PropertyRef Name="id_at" />
+    </Key>
+    <Property Name="id_ro" Type="int" Nullable="false" />
+    <Property Name="id_at" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Storage">
+    <Key>
+      <PropertyRef Name="id_st" />
+    </Key>
+    <Property Name="id_st" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Storage_Product">
+    <Key>
+      <PropertyRef Name="id_st" />
+      <PropertyRef Name="id_pr" />
+    </Key>
+    <Property Name="id_st" Type="int" Nullable="false" />
+    <Property Name="id_pr" Type="int" Nullable="false" />
+    <Property Name="amount" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'hotelDB.dbo.view_AllPayedReservations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_AllPayedReservations">
+    <Key>
+      <PropertyRef Name="id_re" />
+      <PropertyRef Name="firstname" />
+      <PropertyRef Name="lastname" />
+      <PropertyRef Name="date_from" />
+      <PropertyRef Name="date_to" />
+      <PropertyRef Name="price_total" />
+      <PropertyRef Name="phone" />
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="id_re" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstname" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="date_from" Type="smalldatetime" Nullable="false" />
+    <Property Name="date_to" Type="smalldatetime" Nullable="false" />
+    <Property Name="price_total" Type="money" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="320" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'hotelDB.dbo.view_FridgeProductAmount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_FridgeProductAmount">
+    <Key>
+      <PropertyRef Name="id_fr" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="price" />
+    </Key>
+    <Property Name="id_fr" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="amount" Type="int" />
+    <Property Name="price" Type="money" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'hotelDB.dbo.view_RoomReservations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_RoomReservations">
+    <Key>
+      <PropertyRef Name="id_re" />
+      <PropertyRef Name="id_ro" />
+    </Key>
+    <Property Name="id_re" Type="int" Nullable="false" />
+    <Property Name="id_ro" Type="int" Nullable="false" />
+    <Property Name="beds" Type="int" />
+    <Property Name="price_per_day" Type="money" />
+    <Property Name="date_from" Type="smalldatetime" />
+    <Property Name="date_to" Type="smalldatetime" />
+    <Property Name="firstname" Type="nvarchar" MaxLength="30" />
+    <Property Name="lastname" Type="nvarchar" MaxLength="50" />
+    <Property Name="price_total" Type="money" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'hotelDB.dbo.view_StorageProductAmount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_StorageProductAmount">
+    <Key>
+      <PropertyRef Name="id_st" />
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="id_st" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="amount" Type="int" />
+  </EntityType>
+  <Association Name="FK_Product_Fridge_Fridge">
+    <End Role="Fridge" Type="Self.Fridge" Multiplicity="1" />
+    <End Role="Product_Fridge" Type="Self.Product_Fridge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fridge">
+        <PropertyRef Name="id_fr" />
+      </Principal>
+      <Dependent Role="Product_Fridge">
+        <PropertyRef Name="id_fr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Fridge_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Product_Fridge" Type="Self.Product_Fridge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id_pr" />
+      </Principal>
+      <Dependent Role="Product_Fridge">
+        <PropertyRef Name="id_pr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Room_Reservation">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="Reservation_Room" Type="Self.Reservation_Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="id_re" />
+      </Principal>
+      <Dependent Role="Reservation_Room">
+        <PropertyRef Name="id_re" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Room_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+    <End Role="Reservation_Room" Type="Self.Reservation_Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="id_ro" />
+      </Principal>
+      <Dependent Role="Reservation_Room">
+        <PropertyRef Name="id_ro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Attribute_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="1" />
+    <End Role="Room_Attribute" Type="Self.Room_Attribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attribute">
+        <PropertyRef Name="id_at" />
+      </Principal>
+      <Dependent Role="Room_Attribute">
+        <PropertyRef Name="id_at" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Attribute_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+    <End Role="Room_Attribute" Type="Self.Room_Attribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="id_ro" />
+      </Principal>
+      <Dependent Role="Room_Attribute">
+        <PropertyRef Name="id_ro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Fridge">
+    <End Role="Fridge" Type="Self.Fridge" Multiplicity="1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fridge">
+        <PropertyRef Name="id_fr" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="id_fr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Storage_Product_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Storage_Product" Type="Self.Storage_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id_pr" />
+      </Principal>
+      <Dependent Role="Storage_Product">
+        <PropertyRef Name="id_pr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Storage_Product_Storage">
+    <End Role="Storage" Type="Self.Storage" Multiplicity="1" />
+    <End Role="Storage_Product" Type="Self.Storage_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Storage">
+        <PropertyRef Name="id_st" />
+      </Principal>
+      <Dependent Role="Storage_Product">
+        <PropertyRef Name="id_st" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hotelDBModelStoreContainer">
+    <EntitySet Name="Attribute" EntityType="Self.Attribute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fridge" EntityType="Self.Fridge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Fridge" EntityType="Self.Product_Fridge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservation_Room" EntityType="Self.Reservation_Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room_Attribute" EntityType="Self.Room_Attribute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Storage_Product" EntityType="Self.Storage_Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="view_AllPayedReservations" EntityType="Self.view_AllPayedReservations" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_AllPayedReservations].[id_re] AS [id_re], 
+    [view_AllPayedReservations].[firstname] AS [firstname], 
+    [view_AllPayedReservations].[lastname] AS [lastname], 
+    [view_AllPayedReservations].[date_from] AS [date_from], 
+    [view_AllPayedReservations].[date_to] AS [date_to], 
+    [view_AllPayedReservations].[price_total] AS [price_total], 
+    [view_AllPayedReservations].[phone] AS [phone], 
+    [view_AllPayedReservations].[email] AS [email]
+    FROM [dbo].[view_AllPayedReservations] AS [view_AllPayedReservations]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_FridgeProductAmount" EntityType="Self.view_FridgeProductAmount" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_FridgeProductAmount].[id_fr] AS [id_fr], 
+    [view_FridgeProductAmount].[name] AS [name], 
+    [view_FridgeProductAmount].[amount] AS [amount], 
+    [view_FridgeProductAmount].[price] AS [price]
+    FROM [dbo].[view_FridgeProductAmount] AS [view_FridgeProductAmount]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_RoomReservations" EntityType="Self.view_RoomReservations" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_RoomReservations].[id_re] AS [id_re], 
+    [view_RoomReservations].[id_ro] AS [id_ro], 
+    [view_RoomReservations].[beds] AS [beds], 
+    [view_RoomReservations].[price_per_day] AS [price_per_day], 
+    [view_RoomReservations].[date_from] AS [date_from], 
+    [view_RoomReservations].[date_to] AS [date_to], 
+    [view_RoomReservations].[firstname] AS [firstname], 
+    [view_RoomReservations].[lastname] AS [lastname], 
+    [view_RoomReservations].[price_total] AS [price_total]
+    FROM [dbo].[view_RoomReservations] AS [view_RoomReservations]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_StorageProductAmount" EntityType="Self.view_StorageProductAmount" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_StorageProductAmount].[id_st] AS [id_st], 
+    [view_StorageProductAmount].[name] AS [name], 
+    [view_StorageProductAmount].[amount] AS [amount]
+    FROM [dbo].[view_StorageProductAmount] AS [view_StorageProductAmount]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Product_Fridge_Fridge" Association="Self.FK_Product_Fridge_Fridge">
+      <End Role="Fridge" EntitySet="Fridge" />
+      <End Role="Product_Fridge" EntitySet="Product_Fridge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Fridge_Product" Association="Self.FK_Product_Fridge_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Product_Fridge" EntitySet="Product_Fridge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Room_Reservation" Association="Self.FK_Reservation_Room_Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Reservation_Room" EntitySet="Reservation_Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Room_Room" Association="Self.FK_Reservation_Room_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Reservation_Room" EntitySet="Reservation_Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Attribute_Attribute" Association="Self.FK_Room_Attribute_Attribute">
+      <End Role="Attribute" EntitySet="Attribute" />
+      <End Role="Room_Attribute" EntitySet="Room_Attribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Attribute_Room" Association="Self.FK_Room_Attribute_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Room_Attribute" EntitySet="Room_Attribute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Fridge" Association="Self.FK_Room_Fridge">
+      <End Role="Fridge" EntitySet="Fridge" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Storage_Product_Product" Association="Self.FK_Storage_Product_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Storage_Product" EntitySet="Storage_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Storage_Product_Storage" Association="Self.FK_Storage_Product_Storage">
+      <End Role="Storage" EntitySet="Storage" />
+      <End Role="Storage_Product" EntitySet="Storage_Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

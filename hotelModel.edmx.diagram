@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5c18f9e3ff3243988cb55f545fbbd54e" Name="Diagram1">
+        <EntityTypeShape EntityType="hotelDBModel.Attribute" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelDBModel.Fridge" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelDBModel.Product" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelDBModel.Product_Fridge" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelDBModel.Reservation" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelDBModel.Room" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelDBModel.Storage" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelDBModel.Storage_Product" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="hotelDBModel.FK_Product_Fridge_Fridge" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelDBModel.FK_Room_Fridge" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelDBModel.FK_Product_Fridge_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelDBModel.FK_Storage_Product_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelDBModel.FK_Storage_Product_Storage" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelDBModel.Reservation_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelDBModel.Room_Attribute" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="hotelDBModel.view_StorageProductAmount" Width="2.25" PointX="4.625" PointY="6.375" />
+        <EntityTypeShape EntityType="hotelDBModel.view_FridgeProductAmount" Width="2.25" PointX="4.625" PointY="8" />
+        <EntityTypeShape EntityType="hotelDBModel.view_RoomReservations" Width="1.5" PointX="7" PointY="6.375" />
+        <EntityTypeShape EntityType="hotelDBModel.view_AllPayedReservations" Width="1.5" PointX="8.625" PointY="6.375" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

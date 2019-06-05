@@ -5,18 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HotelApplication"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Light"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d" Height="768" Width="1366" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
@@ -29,16 +34,22 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
         </EventTrigger>
     </Window.Triggers>
-    
+
     <Grid Background="LightGray">
-        <Grid Height="50" VerticalAlignment="Top" Background="#FF2668C7">
-            <TextBlock Text="Hotel Aqua" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="White"/>
+        <!-- Contain control -->
+        <Grid Height="698" Width="1286" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10">
+            <ContentControl x:Name="mainContentControl"/>
+        </Grid>
+
+        <!-- Background, plná velikost -->
+        <Grid Height="50" VerticalAlignment="Top" Background="#3f51b5">
+            <TextBlock Text="Hotel Mathiola" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="White"/>
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
-                
+
                 <TextBlock Text="Menu" VerticalAlignment="Center" FontSize="18" Foreground="White"/>
                 <materialDesign:PopupBox Margin="5" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Foreground="White">
                     <StackPanel Width="150">
-                        <Button Content="Pomoc"/>
+                        <Button x:Name="ButtonHelp" Content="Pomoc" Click="ButtonHelp_Click"/>
                         <Button x:Name="ButtonPopUpAdmin" Content="Admin" Click="ButtonPopUpAdmin_Click"/>
                         <Separator/>
                         <Button x:Name="ButtonExit" Content="Vypnout" Click="ButtonExit_Click"/>
@@ -46,44 +57,57 @@
                 </materialDesign:PopupBox>
             </StackPanel>
         </Grid>
-        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF1D2F6E">
-            <StackPanel>
-                <Grid Height="150" Background="White">
-                    <Button x:Name="ButtonCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
-                        <!-- <materialDesign:PackIcon Kind="ArrowLeft"/> -->
-                        <materialDesign:PackIcon Foreground="#FF1D2F6E" Kind="ArrowLeft" Width="25" Height="25"/>
-                    </Button>
-                    <Button x:Name="ButtonOpenMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonOpenMenu_Click">
-                        <materialDesign:PackIcon Foreground="#FF1D2F6E" Kind="Menu" Width="25" Height="25"/>
-                    </Button>
-                </Grid>
-                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FF2668C7">
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Home" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Ballot" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Rezervace" VerticalAlignment="Center" Margin="20 10"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="CashMultiple" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Zaplacení" VerticalAlignment="Center" Margin="20 10"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="CubeScan" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Sklad" VerticalAlignment="Center" Margin="20 10"/>
-                        </StackPanel>
-                    </ListViewItem>
-                </ListView>
-            </StackPanel>    
+
+        <!-- <Grid x:Name="GridAdmin" Height="698" Width="1286" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10" >
+            <GroupBox Header="Nový produkt" Margin="10" Height="180" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                <StackPanel Width="140" HorizontalAlignment="Left">
+                    <TextBox x:Name="txt_productname" materialDesign:HintAssist.Hint="Název produktu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox x:Name="txt_productprice" materialDesign:HintAssist.Hint="Cena produktu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="_PŘIDAT" Margin="0,15"/>
+                </StackPanel>
+
+            </GroupBox>
+        </Grid> -->
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF5411B2">
+            <!-- Levý panel -->
+            <Border BorderThickness="1">
+                <StackPanel>
+                    <Grid Height="150" Background="#FFF1F1F1">
+                        <Button x:Name="ButtonCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
+                            <materialDesign:PackIcon Foreground="#FF5411B2" Kind="ArrowLeft" Width="25" Height="25"/>
+                        </Button>
+                        <Button x:Name="ButtonOpenMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonOpenMenu_Click">
+                            <materialDesign:PackIcon Foreground="#FF5411B2" Kind="Menu" Width="25" Height="25"/>
+                        </Button>
+                    </Grid>
+                    <ListView x:Name="MainLeftListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White">
+                        <ListViewItem Height="60" x:Name="listview_home" Selected="Listview_home_Selected" >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Home" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                                <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="60" x:Name="listview_reservation" Selected="Listview_reservation_Selected">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Ballot" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                                <TextBlock Text="Rezervace" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="60" x:Name="listview_pay" Selected="Listview_pay_Selected">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CashMultiple" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                                <TextBlock Text="Zaplacení" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="60" x:Name="listview_storage" Selected="Listview_storage_Selected">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CubeScan" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                                <TextBlock Text="Sklad" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </Border>
         </Grid>
     </Grid>
 </Window>

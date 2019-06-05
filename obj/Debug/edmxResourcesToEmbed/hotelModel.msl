@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hotelDBModelStoreContainer" CdmEntityContainer="hotelDBEntities">
+    <EntitySetMapping Name="Attributes">
+      <EntityTypeMapping TypeName="hotelDBModel.Attribute">
+        <MappingFragment StoreEntitySet="Attribute">
+          <ScalarProperty Name="id_at" ColumnName="id_at" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fridges">
+      <EntityTypeMapping TypeName="hotelDBModel.Fridge">
+        <MappingFragment StoreEntitySet="Fridge">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_fr" ColumnName="id_fr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="hotelDBModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="id_pr" ColumnName="id_pr" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Fridge">
+      <EntityTypeMapping TypeName="hotelDBModel.Product_Fridge">
+        <MappingFragment StoreEntitySet="Product_Fridge">
+          <ScalarProperty Name="id_fr" ColumnName="id_fr" />
+          <ScalarProperty Name="id_pr" ColumnName="id_pr" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservations">
+      <EntityTypeMapping TypeName="hotelDBModel.Reservation">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="ispayed" ColumnName="ispayed" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="date_to" ColumnName="date_to" />
+          <ScalarProperty Name="date_from" ColumnName="date_from" />
+          <ScalarProperty Name="id_re" ColumnName="id_re" />
+          <ScalarProperty Name="price_total" ColumnName="price_total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="hotelDBModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="id_ro" ColumnName="id_ro" />
+          <ScalarProperty Name="id_fr" ColumnName="id_fr" />
+          <ScalarProperty Name="beds" ColumnName="beds" />
+          <ScalarProperty Name="price_per_day" ColumnName="price_per_day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Storages">
+      <EntityTypeMapping TypeName="hotelDBModel.Storage">
+        <MappingFragment StoreEntitySet="Storage">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_st" ColumnName="id_st" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Storage_Product">
+      <EntityTypeMapping TypeName="hotelDBModel.Storage_Product">
+        <MappingFragment StoreEntitySet="Storage_Product">
+          <ScalarProperty Name="id_st" ColumnName="id_st" />
+          <ScalarProperty Name="id_pr" ColumnName="id_pr" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="hotelDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Reservation_Room" TypeName="hotelDBModel.Reservation_Room" StoreEntitySet="Reservation_Room">
+      <EndProperty Name="Reservation">
+        <ScalarProperty Name="id_re" ColumnName="id_re" />
+      </EndProperty>
+      <EndProperty Name="Room">
+        <ScalarProperty Name="id_ro" ColumnName="id_ro" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Room_Attribute" TypeName="hotelDBModel.Room_Attribute" StoreEntitySet="Room_Attribute">
+      <EndProperty Name="Attribute">
+        <ScalarProperty Name="id_at" ColumnName="id_at" />
+      </EndProperty>
+      <EndProperty Name="Room">
+        <ScalarProperty Name="id_ro" ColumnName="id_ro" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="view_StorageProductAmount">
+      <EntityTypeMapping TypeName="hotelDBModel.view_StorageProductAmount">
+        <MappingFragment StoreEntitySet="view_StorageProductAmount">
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_st" ColumnName="id_st" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_FridgeProductAmount">
+      <EntityTypeMapping TypeName="hotelDBModel.view_FridgeProductAmount">
+        <MappingFragment StoreEntitySet="view_FridgeProductAmount">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id_fr" ColumnName="id_fr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_RoomReservations">
+      <EntityTypeMapping TypeName="hotelDBModel.view_RoomReservations">
+        <MappingFragment StoreEntitySet="view_RoomReservations">
+          <ScalarProperty Name="price_total" ColumnName="price_total" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="id_ro" ColumnName="id_ro" />
+          <ScalarProperty Name="id_re" ColumnName="id_re" />
+          <ScalarProperty Name="date_to" ColumnName="date_to" />
+          <ScalarProperty Name="date_from" ColumnName="date_from" />
+          <ScalarProperty Name="price_per_day" ColumnName="price_per_day" />
+          <ScalarProperty Name="beds" ColumnName="beds" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_AllPayedReservations">
+      <EntityTypeMapping TypeName="hotelDBModel.view_AllPayedReservations">
+        <MappingFragment StoreEntitySet="view_AllPayedReservations">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="price_total" ColumnName="price_total" />
+          <ScalarProperty Name="date_to" ColumnName="date_to" />
+          <ScalarProperty Name="date_from" ColumnName="date_from" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="id_re" ColumnName="id_re" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

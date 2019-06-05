@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="HotelApplication.AdminControlWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HotelApplication"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.FontWeight="Light"
+             TextElement.FontSize="14"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             Height="698" Width="1286">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <!-- Panel 1 = produkty -->
+            <StackPanel>
+                <GroupBox Header="Vytvořit produkt" Margin="10" Height="185" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <TextBox x:Name="txt_productname" materialDesign:HintAssist.Hint="Název produktu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="txt_productprice" materialDesign:HintAssist.Hint="Cena produktu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addProduct" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addProduct_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Odebrání produktu" Margin="10,0" Height="145" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <ComboBox x:Name="combo_productnames" materialDesign:HintAssist.Hint="Název produktu" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="PRODUKTY"/>
+                        </ComboBox>
+                        <Button x:Name="btn_deleteProduct" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="ODEBRAT" Margin="0,15" Click="Btn_deleteProduct_Click"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+
+            <!-- Panel 2 = sklad -->
+            <StackPanel>
+                <GroupBox Header="Přidání skladu" Margin="10,10,0,10" Height="145" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <TextBox x:Name="txt_storagename" materialDesign:HintAssist.Hint="Název skladu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addStorage" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addStorage_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Odebrání skladu" Margin="10,0" Height="145" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <ComboBox x:Name="combo_storagenames" materialDesign:HintAssist.Hint="Název skladu" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True">
+                                Sklad 1
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <Button x:Name="btn_deleteStorage" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="ODEBRAT" Margin="0,15" Click="Btn_deleteStorage_Click"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+
+            <!-- Panel 3 = Lednice -->
+            <StackPanel>
+                <GroupBox Header="Přidání lednice" Margin="10" Height="145" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <TextBox x:Name="txt_fridgename" materialDesign:HintAssist.Hint="Název lednice" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addFridge" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addFridge_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Odebrání lednice" Margin="10,0" Height="145" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <ComboBox x:Name="combo_fridgenames" materialDesign:HintAssist.Hint="Název lednice" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Lednice 1"/>
+                        </ComboBox>
+                        <Button x:Name="btn_deleteFridge" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="ODEBRAT" Margin="0,15" Click="Btn_deleteFridge_Click"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+
+            <!-- Panel 4 = Pokoj -->
+            <StackPanel>
+                <GroupBox Header="Přidání pokoje" Margin="10" Height="220" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <TextBox x:Name="txt_roombeds" materialDesign:HintAssist.Hint="Počet postelí" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="txt_roompriceperday" materialDesign:HintAssist.Hint="Cena za den" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <ComboBox x:Name="combo_roomfridgename" materialDesign:HintAssist.Hint="Lednice v pokoji" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Žádná TODO"/>
+                        </ComboBox>
+                        <Button x:Name="btn_addRoom" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addRoom_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Odebrání pokoje" Margin="10,0" Height="145" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <ComboBox x:Name="combo_roomnames" materialDesign:HintAssist.Hint="Číslo pokoje" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Pokoj 1"/>
+                        </ComboBox>
+                        <Button x:Name="btn_deleteRoom" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="ODEBRAT" Margin="0,15" Click="Btn_deleteRoom_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Vyměnit lednici v pokoji" Margin="10" Height="210" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <ComboBox x:Name="combo_4changefridge_chooseroom" materialDesign:HintAssist.Hint="Číslo pokoje" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="Combo_4changefridge_chooseroom_SelectionChanged">
+                            <ComboBoxItem IsSelected="True" Content="Pokoj 1"/>
+                        </ComboBox>
+                        <Label x:Name="label_4currentfridge" FontSize="11">Má :</Label>
+                        <ComboBox x:Name="combo_4changefridge_choosefridge" materialDesign:HintAssist.Hint="Vyměnit za lednici" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True"/>
+                        </ComboBox>
+                        <Button x:Name="btn_changeFridge" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="ZMĚNIT" Margin="0,15" Click="Btn_changeFridge_Click"/>
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+            <!-- Panel 5 = Vlastnosti pokoje -->
+            <StackPanel>
+                <GroupBox Header="Přidat novou vlastnost" Margin="10" Height="145" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <TextBox x:Name="txt_attributename" materialDesign:HintAssist.Hint="Název vlastnosti" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button x:Name="btn_addAttribute" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addAttribute_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Odebrání vlastnosti" Margin="10,0" Height="145" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <ComboBox x:Name="combo_attributenames" materialDesign:HintAssist.Hint="Název vlastnosti" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Vlastnost 1"/>
+                        </ComboBox>
+                        <Button x:Name="btn_deleteAttribute" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="ODEBRAT" Margin="0,15" Click="Btn_deleteAttribute_Click"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <!-- Panel 6 = Přidat vlastnost určitému pokoji -->
+            <StackPanel>
+                <GroupBox Header="Přidat vlastnost pokoji" Margin="10" Height="185" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <ComboBox x:Name="combo_6chooseroomid" materialDesign:HintAssist.Hint="Číslo pokoje" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Pokoj 1"/>
+                        </ComboBox>
+                        <ComboBox x:Name="combo_6roomattributes" materialDesign:HintAssist.Hint="Název vlastnosti" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Vlastnost 1"/>
+                        </ComboBox>
+                        <Button x:Name="btn_addAttributeToRoom" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addAttributeToRoom_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Odebrat vlastnost pok." Margin="10,0" Height="185" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <ComboBox x:Name="combo_6deleteroomid" materialDesign:HintAssist.Hint="Číslo pokoje" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="Combo_6deleteroomid_SelectionChanged">
+                            <ComboBoxItem IsSelected="True" Content="Pokoj 1"/>
+                        </ComboBox>
+                        <ComboBox x:Name="combo_6deleteroomattributes" materialDesign:HintAssist.Hint="Název vlastnosti" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True" Content="Vlastnost 1"/>
+                        </ComboBox>
+                        <Button x:Name="btn_deleteAttributeFromRoom" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="ODEBRAT" Margin="0,15" Click="Btn_deleteAttributeFromRoom_Click"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

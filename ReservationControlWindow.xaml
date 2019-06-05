@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="HotelApplication.ReservationControlWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:HotelApplication"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.FontWeight="Light"
+             TextElement.FontSize="14"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             Height="698" Width="1286">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <GroupBox x:Name="groupbox_reservation" Header="Vytvořit rezervaci" Margin="10" Height="410" Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF1F1F1">
+                    <StackPanel Width="140" HorizontalAlignment="Left">
+                        <TextBox x:Name="txt_firstname" materialDesign:HintAssist.Hint="Jméno" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="txt_lastname" materialDesign:HintAssist.Hint="Přijimení" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="txt_phone" materialDesign:HintAssist.Hint="Telefon" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="txt_email" materialDesign:HintAssist.Hint="E-mail" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="@"/>
+                        <TextBox x:Name="txt_adress" materialDesign:HintAssist.Hint="Adresa" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <DatePicker x:Name="date_reservationfrom" materialDesign:HintAssist.Hint="Rezervace od" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" FirstDayOfWeek="Monday" SelectedDate="{x:Static sys:DateTime.Now}" SelectedDateChanged="Date_reservationfrom_SelectedDateChanged"/>
+                        <DatePicker x:Name="date_reservationto" materialDesign:HintAssist.Hint="Rezervace do" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" FirstDayOfWeek="Monday" SelectedDate="{x:Static sys:DateTime.Now}" SelectedDateChanged="Date_reservationto_SelectedDateChanged"/>
+                        <StackPanel x:Name="stackpanel_rooms" Orientation="Horizontal">
+                            <ComboBox x:Name="combo_rooms1" Width="100" materialDesign:HintAssist.Hint="Pokoj" Style="{StaticResource MaterialDesignFloatingHintComboBox}" HorizontalAlignment="Left">
+                                <ComboBoxItem IsSelected="True" Content="Datum první"/>
+                            </ComboBox>
+                            <Button x:Name="btn_addreservationroomcombo" Width="30" Height="30" Margin="10,0,0,0" HorizontalAlignment="Right" Content="+" FontSize="15" Padding="0" Click="Btn_addreservationroomcombo_Click"/>
+                        </StackPanel>
+                        <StackPanel x:Name="stackpanel_morerooms">
+                            <!-- Dynamicke pridavani comboboxu pokoju po zmacknuti btn_addreservationroomcombo -->
+                        </StackPanel>
+                        <Button x:Name="btn_addReservation" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" Width="100" Content="PŘIDAT" Margin="0,15" Click="Btn_addReservation_Click"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Margin="10,23,10,0">Pokoje volné k datům 'od' - 'do'</Label>
+                <DataGrid x:Name="datagrid_reservationdays" Width="360" Height="400" Margin="10,0,10,0" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Číslo pokoje" Binding="{Binding Path=id_ro}" Width="110"/>
+                        <DataGridTextColumn Header="Počet postelí" Binding="{Binding Path=beds}" Width="110"/>
+                        <DataGridTextColumn Header="Cena za den" Binding="{Binding Path=price_per_day}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            <StackPanel>
+                <ComboBox x:Name="combo_chooseroom" Margin="10,10,10,0" materialDesign:HintAssist.Hint="Číslo pokoje" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="Combo_chooseroom_SelectionChanged">
+                    <ComboBoxItem IsSelected="False" Content="Pokoj 1"/>
+                </ComboBox>
+                <DataGrid x:Name="datagrid_rooms" Width="280" Height="400" Margin="10,0,10,10" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Rezervováno od" Binding="{Binding Path=ClassDateFrom}" Width="140"/>
+                        <DataGridTextColumn Header="Rezervováno do" Binding="{Binding Path=ClassDateTo}" Width="140"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
